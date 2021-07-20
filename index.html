@@ -4,17 +4,19 @@
     <title>Harvard Map Demo</title>
     </style>
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src=./index.js async></script>
   </head>
   <body>
-    <h3>Google Maps Demo</h3>
+    <!-- <h3>Google Maps Demo</h3> -->
     <!--The div element for the map -->
     <div id="map"></div>
-
+    
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <!-- Kevin's personal PI key -- please do not distribute! -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwRBYK_6qUnFrtWyb42ogf5L9I6-R6LvA&v=beta&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwRBYK_6qUnFrtWyb42ogf5L9I6-R6LvA&v=beta&callback=initMap"
+    async>
     </script>
   </body>
 </html>

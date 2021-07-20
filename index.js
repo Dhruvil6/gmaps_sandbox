@@ -1,6 +1,6 @@
 // Initialize and add the map
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 17, // furthest zoom that can see buildings
     center: { lat: 42.37429224178242, lng: -71.11628459241092 }, // arbitrary start location
     mapId: 'b536490391ffa6c2'
@@ -8,6 +8,11 @@ function initMap() {
     //lat: 42.37429224178242, lng: -71.11628459241
 
   });
+
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+  const directionsService = new google.maps.DirectionsService();
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
 
   // turn off point-of-interest visibility
   map.setOptions({ styles: [
@@ -102,6 +107,22 @@ function initMap() {
     });
   };
 };
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+  directionsService
+    .route({
+      origin: { lat: meta[0].position.lat, lng: meta[0].position.lng },
+      destination: { lat: meta[1].position.lat, lng: meta[1].position.lng },
+      // Note that Javascript allows us to access the constant
+      // using square brackets and a string value as its
+      // "property."
+      travelMode: "DRIVING",
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => console.log("Directions request failed due to " + e));
+}
 
 // Put all marker metadata here
 const meta = [
