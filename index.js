@@ -12,7 +12,7 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
   const directionsService = new google.maps.DirectionsService();
-  calculateAndDisplayRoute(directionsService, directionsRenderer);
+  // calculateAndDisplayRoute(directionsService, directionsRenderer);
 
   // turn off point-of-interest visibility
   map.setOptions({ styles: [
@@ -101,6 +101,8 @@ function initMap() {
       icon: 'icon.png'
     });
     marker.addListener("click", () => {
+      const location = meta[i].position;
+      calculateAndDisplayRoute(directionsService, directionsRenderer, { lat: 42.376468639837235, lng: -71.11823289325775 }, location);
       infoWindow.close();
       infoWindow.setContent(makeContent(meta[i]));
       infoWindow.open(marker.getMap(), marker);
@@ -108,11 +110,11 @@ function initMap() {
   };
 };
 
-function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+function calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination) {
   directionsService
     .route({
-      origin: { lat: meta[0].position.lat, lng: meta[0].position.lng },
-      destination: { lat: meta[1].position.lat, lng: meta[1].position.lng },
+      origin: origin,
+      destination: destination,
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
