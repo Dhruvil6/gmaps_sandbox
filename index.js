@@ -32,8 +32,8 @@ function initMap() {
   const buttons = [
     ["Rotate Left", "rotate", 20, google.maps.ControlPosition.LEFT_CENTER],
     ["Rotate Right", "rotate", -20, google.maps.ControlPosition.RIGHT_CENTER],
-    ["Tilt Down", "tilt", 20, google.maps.ControlPosition.TOP_CENTER],
-    ["Tilt Up", "tilt", -20, google.maps.ControlPosition.BOTTOM_CENTER],
+    ["Tilt Down", "tilt", 20, google.maps.ControlPosition.BOTTOM_CENTER],
+    ["Tilt Up", "tilt", -20, google.maps.ControlPosition.TOP_CENTER],
   ];
   buttons.forEach(([text, mode, amount, position]) => {
     const controlDiv = document.createElement("div");
@@ -45,10 +45,10 @@ function initMap() {
       controlUI.classList.add("ui-right")
     }
     if(text == "Tilt Down"){
-      controlUI.classList.add("ui-Down")
+      controlUI.classList.add("ui-Up")
     }
     if(text == "Tilt Up"){
-      controlUI.classList.add("ui-Up")
+      controlUI.classList.add("ui-Down")
     }
     //controlUI.classList.add("ui-button");
     //controlUI.innerText = `${text}`;
@@ -118,7 +118,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer, origin,
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
-      travelMode: "DRIVING",
+      travelMode: "WALKING",
     })
     .then((response) => {
       directionsRenderer.setDirections(response);
