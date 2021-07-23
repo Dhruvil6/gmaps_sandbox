@@ -107,6 +107,14 @@ function initMap() {
       infoWindow.open(marker.getMap(), marker);
     });
   };
+
+  // Event listeners
+  const endMenu = document.getElementById('end');
+  endMenu.addEventListener('change', (event) => {
+    const value = event.currentTarget.value;
+    const building = meta.find(b => b.sid === value);
+    calculateAndDisplayRoute(directionsService, directionsRenderer, { lat: 42.376468639837235, lng: -71.11823289325775 }, building.position);
+  })
 };
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination) {
