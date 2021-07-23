@@ -12,7 +12,6 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
   const directionsService = new google.maps.DirectionsService();
-  // calculateAndDisplayRoute(directionsService, directionsRenderer);
 
   // turn off point-of-interest visibility
   map.setOptions({ styles: [
